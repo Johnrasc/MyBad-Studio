@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Archive | MB Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="gallery-style.css">
+    <script>
+        // Immediate Theme Check to prevent "white flash" on reload
+        const savedTheme = localStorage.getItem('studio-theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+</head>
+<body>
+    <div id="scroll-progress"></div>
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+
+    <div id="canvas-container">
+        <canvas id="studio-bg"></canvas>
+    </div>
+
+    <nav class="gallery-nav">
+        <div class="nav-left">
+            <a href="../../index.html" class="back-btn interactive-element">← ESC</a>
+        </div>
+        
+        <div class="nav-center">
+            <div class="search-pill">
+                <input type="text" id="artSearch" placeholder="Search archive..." onkeyup="filterArt()">
+                <kbd>/</kbd>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <button id="themeToggle" class="theme-btn interactive-element" aria-label="Toggle Theme">✦</button>
+        </div>
+    </nav>
+
+    <div class="gallery-wrapper">
+        <header class="gallery-header">
+            <div class="filter-bar">
+                <button class="filter-btn active interactive-element" data-filter="all">All Works</button>
+                <button class="filter-btn interactive-element" data-filter="digital">Digital</button>
+                <button class="filter-btn interactive-element" data-filter="traditional">Traditional</button>
+                <button class="filter-btn interactive-element" data-filter="other">Other</button>
+            </div>
+            <h1 class="gallery-title">MB ART<span>Archive</span></h1>
+            <p class="gallery-count mono" id="artCount">Initializing...</p>
+        </header>
+
+        <main class="masonry-grid" id="artGrid">
+            </main>
+
+    <footer class="gallery-footer">
+        <div class="footer-divider"></div>
+        <div class="footer-grid">
+            <div class="footer-left">
+                <p class="footer-status mono"><span class="pulse-dot"></span> ARCHIVE_ACTIVE</p>
+                <p class="footer-sub mono" style="font-size: 0.6rem; opacity: 0.4;">V2.1 // Integrated Visual Engine</p>
+            </div>
+        
+            <div class="footer-center">
+                <p class="mono" style="font-size: 0.7rem;">&copy; 2026 MB WORKS</p>
+            </div>
+        
+            <div class="footer-right">
+                <div class="footer-links">
+                    <a href="#" class="interactive-element">INSTAGRAM</a>
+                    <a href="#" class="interactive-element">DRIBBBLE</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div> 
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <div class="lightbox-wrapper">
+            <img class="lightbox-content" id="lightbox-img">
+            <div id="caption" class="mono"></div>
+        </div>
+    </div>
+
+    <script src="gallery-logic.js"></script>
+</body>
+</html>

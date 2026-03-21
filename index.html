@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MB Works | Studio Archive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+
+    <div id="canvas-container">
+        <canvas id="studio-bg"></canvas>
+    </div>
+
+    <div id="scroll-progress"></div>
+
+    <nav class="top-nav">
+        <div class="brand-logo">MB // 2026</div>
+        <div class="nav-controls">
+            <button id="themeToggle" class="interactive-element" aria-label="Toggle Theme">
+                <span class="mode-icon">✦</span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="studio-wrapper">
+        <header class="reveal-on-scroll">
+            <div class="header-top">
+                <span class="version-tag">V2.1</span>
+                <h1 class="studio-title">MyBad 🍀<span>Studio</span></h1>
+            </div>
+            
+            <div class="header-flex">
+                <p class="studio-subtitle">An archive of engineering projects, digital art, and experimental sounds.</p>
+                <div class="search-container">
+                    <input type="text" id="studioSearch" placeholder="Filter archive..." onkeyup="filterStudio()">
+                    <kbd class="shortcut-hint">/</kbd>
+                </div>
+            </div>
+        </header>
+
+        <main class="content-grid" id="mainGrid">
+            <div class="paper-card music-item reveal-on-scroll" data-category="music">
+                <div class="card-inner">
+                    <div class="card-header">
+                        <span class="card-number">01</span>
+                        <span class="card-badge">AUDIO</span>
+                    </div>
+                    <h3>Midnight Sessions</h3>
+                    <p>Analog textures and lo-fi experiments recorded during late-night development sessions.</p>
+                    <div class="card-footer-btns">
+                        <a href="#" class="btn btn-primary interactive-element">Play</a> 
+                        <button class="btn btn-icon interactive-element">↓</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="paper-card poem-item reveal-on-scroll" data-category="literature">
+                <div class="card-inner">
+                    <div class="card-header">
+                        <span class="card-number">02</span>
+                        <span class="card-badge">TEXT</span>
+                    </div>
+                    <h3>Ink & Echoes</h3>
+                    <p>A collection of verses exploring the intersection of digital life and modern philosophy.</p>
+                    <div class="card-footer-btns">
+                        <a href="#" class="btn btn-primary interactive-element">Read</a>
+                        <button class="btn btn-icon interactive-element">PDF</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="paper-card art-item reveal-on-scroll" data-category="arts">
+                <div class="card-inner">
+                    <div class="card-header">
+                        <span class="card-number">03</span>
+                        <span class="card-badge">VISUAL</span>
+                    </div>
+                    <h3>Digital Sketches</h3>
+                    <p>Procreate illustrations and UI wireframes developed for various personal and venture projects.</p>
+                    <div class="card-footer-btns">
+                        <a href="assets/art-section/art-gallery.html" class="btn btn-primary interactive-element">Gallery</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="paper-card project-item reveal-on-scroll" data-category="projects">
+                <div class="card-inner">
+                    <div class="card-header">
+                        <span class="card-number">04</span>
+                        <span class="card-badge">SYSTEMS</span>
+                    </div>
+                    <h3>IoT Preservation</h3>
+                    <p>Multi-Zone PID-Controlled chamber using ESP32 for optimized fruit storage research.</p>
+                    <div class="card-footer-btns">
+                        <a href="#" class="btn btn-primary interactive-element">Source</a>
+                        <button class="btn btn-icon interactive-element">DOC</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="studio-footer reveal-on-scroll">
+            <div class="footer-divider"></div>
+            <div class="footer-grid">
+                <div class="footer-left">
+                    <p class="footer-status"><span class="pulse-dot"></span> SYSTEM_STABLE</p>
+                    <p class="footer-sub">Optimized for high-performance browsing.</p>
+                </div>
+                <div class="footer-center">
+                    <p>&copy; 2026 MB WORKS</p>
+                </div>
+                <div class="footer-right">
+                    <div class="social-links">
+                        <a href="#" class="interactive-element">GITHUB</a>
+                        <a href="#" class="interactive-element">LINKEDIN</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
