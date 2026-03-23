@@ -1,24 +1,24 @@
 /**
- * THE ARCHIVE ENGINE v2.1
- * Optimized for: Zero-Latency Input, Mobile Compatibility, and Performance
+ * ARCHIVE SCRIPT v2.1
+ * MyBad_
  */
-
-// DUAL-ELEMENT CURSOR SYSTEM (ZERO LATENCY)
-const dot = document.getElementById('cursor-dot');
-const outline = document.getElementById('cursor-outline');
 
 // Scroll Progress Tracking
 window.addEventListener('scroll', () => {
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const scrolled = (winScroll / height) * 100;
-    document.getElementById("scroll-progress").style.width = scrolled + "%";
+    const progressBar = document.getElementById("scroll-progress");
+    if (progressBar) progressBar.style.width = scrolled + "%";
 });
 
 // Floating Elements
 function spawnScraps() {
+    const isMobile = window.innerWidth < 768;
+    const count = isMobile ? 8 : 15;
+
     const container = document.body;
-    const icons = ['✦', '◦', '•', '✧', '■'];
+    const icons = ['✦', '◦', '•', '✧', '✩', '✫', '✬', '✭', '✮', '✯'];
     for(let i = 0; i < 15; i++) {
         const scrap = document.createElement('div');
         scrap.className = 'scrap';
@@ -29,7 +29,7 @@ function spawnScraps() {
         scrap.style.color = 'var(--ink)';
         container.appendChild(scrap);
         
-        // Simple floating animation
+        // floating anim
         animateScrap(scrap);
     }
 }
@@ -43,35 +43,6 @@ function animateScrap(el) {
 }
 
 spawnScraps();
-
-// We use direct X/Y snap for zero delay
-window.addEventListener('mousemove', (e) => {
-    const { clientX: x, clientY: y } = e;
-    
-    dot.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-    // Outline offset by its own radius (17px) to center it
-    outline.style.transform = `translate3d(${x - 17}px, ${y - 17}px, 0)`;
-});
-
-// Hover interactions for all interactive elements
-const interactives = document.querySelectorAll('.interactive-element, .btn, a, input, button');
-interactives.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        outline.style.width = '50px';
-        outline.style.height = '50px';
-        outline.style.background = 'var(--cursor-outer)';
-        // Center the expanded outline (offset by 25px)
-        outline.style.marginLeft = '-8px'; 
-        outline.style.marginTop = '-8px';
-    });
-    el.addEventListener('mouseleave', () => {
-        outline.style.width = '34px';
-        outline.style.height = '34px';
-        outline.style.background = 'transparent';
-        outline.style.marginLeft = '0';
-        outline.style.marginTop = '0';
-    });
-});
 
 // PERFORMANCE-OPTIMIZED BACKGROUND
 const canvas = document.getElementById('studio-bg');
@@ -110,7 +81,7 @@ function render() {
     
     ctx.save();
     ctx.filter = 'blur(90px)';
-    ctx.globalAlpha = isDark ? 0.08 : 0.18; // Enhanced visibility for light mode
+    ctx.globalAlpha = isDark ? 0.08 : 0.18; // Enhanced visi for light mode
 
     blobs.forEach(b => {
         ctx.beginPath();
@@ -128,13 +99,13 @@ function render() {
     requestAnimationFrame(render);
 }
 
-// 3D TILT ENGINE (DESKTOP ONLY)
+// 3D TILT ENGINE (on DESKTOP ONLY)
 const cards = document.querySelectorAll('.paper-card');
 cards.forEach(card => {
     const inner = card.querySelector('.card-inner');
     
     card.addEventListener('mousemove', (e) => {
-        // Performance check: disable tilt on touch devices
+        // Performance check ==> disable tilt on touch devices
         if (window.matchMedia("(pointer: fine)").matches) {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
@@ -173,7 +144,7 @@ function filterStudio() {
     });
 }
 
-// OBSERVER & INITIALIZATION
+// Init & Obs
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('active');
@@ -186,7 +157,7 @@ document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.obse
 const savedTheme = localStorage.getItem('studio-theme') || 'light';
 document.documentElement.setAttribute('data-theme', savedTheme);
 
-// Handle Resize & Start
+// Resize & Start
 window.addEventListener('resize', () => {
     clearTimeout(window.resizeFinished);
     window.resizeFinished = setTimeout(initCanvas, 200);
@@ -195,7 +166,7 @@ window.addEventListener('resize', () => {
 initCanvas();
 render();
 
-// Shortcut for search (/)
+// Shortcut for search ==> (/)
 document.addEventListener('keydown', (e) => {
     if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
         e.preventDefault();
