@@ -1,4 +1,4 @@
-/* --- ART GALLERY CORE SYSTEM V2.1 --- */
+/* --- ART GALLERY CSS V2.1 --- */
 
 /* THEME DEFINITIONS */
 :root[data-theme="light"] {
@@ -19,7 +19,12 @@
     --border: rgba(255, 255, 255, 0.1);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; cursor: none; }
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    cursor: auto !important;
+}
 
 body {
     background-color: var(--bg);
@@ -29,37 +34,8 @@ body {
     overflow-x: hidden;
 }
 
-/* OPTIMIZATION */
-.art-item {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
 
-.art-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* CURSOR FIX */
-* { cursor: none !important; }
-
-#cursor-dot, #cursor-outline {
-    position: fixed;
-    pointer-events: none;
-    border-radius: 50%;
-    z-index: 9999; /* Higher than nav and lightbox */
-    transform: translate3d(0,0,0);
-}
-
-#cursor-dot { width: 6px; height: 6px; background: var(--ink); }
-#cursor-outline {
-    width: 34px; height: 34px;
-    border: 2px solid var(--ink);
-    opacity: 0.3;
-}
-
-/* NAVIGATION & SEARCH */
+/* NAV & SEARCH */
 .gallery-nav {
     position: fixed;
     top: 0; width: 100%;
@@ -126,7 +102,7 @@ body {
     cursor: none;
 }
 
-/* MASONRY LAYOUT */
+/* LAYOUT */
 .gallery-wrapper {
     max-width: 1400px;
     margin: 0 auto;
@@ -183,22 +159,25 @@ body {
 @media (max-width: 1100px) { .masonry-grid { column-count: 2; } }
 @media (max-width: 700px) { .masonry-grid { column-count: 1; } }
 
-/* THE ART CARD (SQUIRCLE) */
+/* thingy stuff */
 .art-item {
+    opacity: 0;
     break-inside: avoid;
-    margin-bottom: 25px;
+    margin-bottom: 24px;
+    border-radius: 24px;
     background: var(--paper);
-    border: 2px solid var(--border);
-    border-radius: 28px;
+    border: 1px solid var(--border);
     overflow: hidden;
     position: relative;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1), 
+                box-shadow 0.4s ease, 
+                opacity 0.6s ease;
 }
 
 .art-item:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
     border-color: var(--accent-art);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
 
 .art-item img {
@@ -208,18 +187,35 @@ body {
 }
 
 .art-info {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    padding: 25px;
-    background: linear-gradient(transparent, rgba(0,0,0,0.8));
-    color: white;
-    opacity: 0;
-    transition: 0.3s ease;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.art-info h4 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
 }
 
 .art-item:hover .art-info { opacity: 1; }
 
 .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 1px; }
+
+/* OPTIMIZATION */
+.art-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.art-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
 /* AESTHETICS */
 #scroll-progress {
@@ -268,10 +264,10 @@ body {
     color: white; font-size: 40px;
 }
 
-/* --- FOOTER SYSTEM --- */
+/* --- FOOTER --- */
 .gallery-footer { 
     margin-top: 100px; 
-    padding: 60px 0; /* More breathing room */
+    padding: 60px 0;
 }
 
 .footer-divider { 
@@ -283,7 +279,7 @@ body {
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 1fr auto 1fr; /* Left, Center, Right */
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
 }
 
@@ -298,13 +294,13 @@ body {
 }
 
 .footer-right {
-    text-align: right; /* This pushes content to the edge */
+    text-align: right;
 }
 
 .footer-links {
     display: flex;
     gap: 24px;
-    justify-content: flex-end; /* Ensures alignment for flex items */
+    justify-content: flex-end;
 }
 
 .footer-links a {
