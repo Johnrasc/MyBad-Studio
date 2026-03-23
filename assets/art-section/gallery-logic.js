@@ -3,15 +3,6 @@
  * MyBad_
  */
 
-// DATABASE
-const artData = [
-    { title: "Pixel Cyber Land", category: "digital", src: "digital/pixel-cyber.png", desc: "A cyber land in the midst of war" },
-    { title: "For You", category: "traditional", src: "traditional/flower.jpg", desc: "A colored pencil sketch of a flower for you" },
-    { title: "Pixel Gloomy Forest", category: "digital", src: "digital/pixel-gloom.png", desc: "A gloomy forest in the pixelated world" },
-    { title: "I want", category: "traditional", src: "traditional/iwant.jpg", desc: "Maybe I just need a good talk" },
-    { title: "Face me", category: "traditional", src: "traditional/face1.jpg", desc: "A portrait study of a person looking directly at the viewer." }
-];
-
 const grid = document.getElementById('artGrid');
 const countLabel = document.getElementById('artCount');
 const lightbox = document.getElementById('lightbox');
