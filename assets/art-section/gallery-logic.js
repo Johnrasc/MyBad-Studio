@@ -1,6 +1,6 @@
 /**
- * ART ARCHIVE LOGIC V2.1
- * Features: Multi-Layer Filtering, Integrated Search, and Aesthetic Sync
+ * ART ARCHIVE SCRIPT V2.1
+ * MyBad_
  */
 
 // DATABASE
@@ -18,24 +18,27 @@ const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const captionText = document.getElementById('caption');
 
-// CORE GALLERY RENDERER
+// GALLERY RENDERER
 function initGallery(data) {
     grid.innerHTML = ''; 
-    countLabel.innerText = `${data.length.toString().padStart(2, '0')} WORKS ARCHIVED`;
     
-    data.forEach(item => {
+    // shuffle
+    const shuffledData = [...data].sort(() => Math.random() - 0.5);
+    
+    countLabel.innerText = `${shuffledData.length.toString().padStart(2, '0')} WORKS ARCHIVED`;
+    
+    shuffledData.forEach(item => {
         const artCard = document.createElement('div');
         artCard.className = `art-item`;
         artCard.innerHTML = `
-            <img src="${item.src}" alt="${item.title}" loading="lazy"> <div class="art-info">
-                <h4>${item.title}</h4>
+            <img src="${item.src}" alt="${item.title}" loading="lazy">
+            <div class="art-info">
+                <h4 class="syne">${item.title}</h4>
                 <span class="mono">${item.category}</span>
             </div>
         `;
         artCard.onclick = () => openLightbox(item);
         grid.appendChild(artCard);
-        
-        // Start observing for reveal animation
         revealObserver.observe(artCard);
     });
 }
@@ -77,7 +80,7 @@ document.querySelector('.close-lightbox').onclick = () => {
     document.body.style.overflow = 'auto';
 };
 
-// AESTHETICS: GENERATIVE BACKGROUND (Synced)
+// AESTHETICS
 const canvas = document.getElementById('studio-bg');
 const ctx = canvas.getContext('2d');
 let w, h, blobs = [];
@@ -118,20 +121,13 @@ function render() {
     requestAnimationFrame(render);
 }
 
-// THEME & CURSOR
+// THEME TOGGLE
 const themeBtn = document.getElementById('themeToggle');
 themeBtn.onclick = () => {
     const target = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', target);
     localStorage.setItem('studio-theme', target);
     initBackground();
-};
-
-const dot = document.getElementById('cursor-dot');
-const outline = document.getElementById('cursor-outline');
-window.onmousemove = (e) => {
-    dot.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-    outline.style.transform = `translate3d(${e.clientX - 17}px, ${e.clientY - 17}px, 0)`;
 };
 
 // START
@@ -147,12 +143,11 @@ window.onload = () => {
     render();
 };
 
-// Optimization: Reveal on scroll (Lazy Loading)
+// Reveal on scroll
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            // Once visible, stop observing to save performance
             revealObserver.unobserve(entry.target); 
         }
     });
